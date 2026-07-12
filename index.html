@@ -4,226 +4,243 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Fiqueza Multiservicios — Soluciones para tu hogar y empresa</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --navy:#1B2D5B;
-  --navy-dark:#111D3C;
-  --navy-light:#243670;
+  --black:#0D0F14;
+  --black2:#13161E;
+  --card:#181B24;
+  --card2:#1E2130;
+  --border:rgba(201,168,76,0.15);
   --gold:#C9A84C;
-  --gold-light:#E8C96A;
-  --gold-dark:#A8832A;
+  --gold2:#E8C96A;
+  --gold3:rgba(201,168,76,0.08);
   --white:#FFFFFF;
-  --gray-light:#F4F5F7;
-  --gray-mid:#E8E9EC;
-  --gray-text:#6B7280;
-  --black:#0D1117;
+  --off:#F0EDE6;
+  --muted:#8A8FA8;
+  --text:#D4D7E3;
 }
 html{scroll-behavior:smooth;}
-body{font-family:'Lato',sans-serif;color:var(--black);background:#fff;line-height:1.6;}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--text);line-height:1.6;overflow-x:hidden;}
 
-/* ── NAV ── */
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--black2);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+
+/* NAV */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:var(--navy-dark);
-  padding:0 5%;
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:72px;padding:0 6%;
   display:flex;align-items:center;justify-content:space-between;
-  height:70px;
-  border-bottom:2px solid var(--gold);
+  background:rgba(13,15,20,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  transition:all 0.3s;
 }
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.nav-logo svg{width:44px;height:44px;}
-.nav-logo-text{display:flex;flex-direction:column;}
-.nav-logo-text .brand{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:0.08em;line-height:1;}
-.nav-logo-text .sub{font-size:0.58rem;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;font-weight:600;}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;padding:4px 0;border-bottom:2px solid transparent;}
-.nav-links a:hover{color:var(--gold);border-bottom-color:var(--gold);}
-.nav-cta{background:var(--gold);color:var(--navy-dark);padding:0.55rem 1.4rem;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border-radius:3px;transition:background 0.2s;}
-.nav-cta:hover{background:var(--gold-light);}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
-.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s;}
+.logo-icon{width:40px;height:40px;position:relative;}
+.logo-icon svg{width:40px;height:40px;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;color:var(--white);letter-spacing:0.04em;}
+.nav-brand span{color:var(--gold);}
+.nav-sub{font-size:0.6rem;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;font-weight:600;margin-top:-2px;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transition:transform 0.25s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{background:var(--gold);color:var(--black);padding:0.6rem 1.5rem;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.2s;}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:22px;height:1.5px;background:var(--white);border-radius:1px;transition:all 0.3s;}
 
-/* ── HERO ── */
+/* HERO */
 .hero{
-  margin-top:70px;
-  min-height:calc(100vh - 70px);
-  background:linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--navy-light) 100%);
-  display:flex;align-items:center;
-  padding:5rem 5%;
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:7rem 6% 4rem;
   position:relative;overflow:hidden;
+  gap:4rem;
 }
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  pointer-events:none;
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 70% at 75% 50%, rgba(201,168,76,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
 }
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;}
-.hero-text{}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);padding:6px 16px;border-radius:20px;margin-bottom:1.5rem;}
-.hero-badge span{font-size:0.72rem;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;font-weight:600;}
-.hero-badge::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%;}
-.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;color:#fff;line-height:1.1;margin-bottom:1.2rem;}
-.hero h1 em{font-style:normal;color:var(--gold);}
-.hero p{color:rgba(255,255,255,0.7);font-size:1rem;max-width:46ch;margin-bottom:2rem;line-height:1.75;}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-gold{background:var(--gold);color:var(--navy-dark);padding:0.85rem 2rem;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:3px;transition:all 0.2s;border:2px solid var(--gold);}
-.btn-gold:hover{background:var(--gold-light);border-color:var(--gold-light);}
-.btn-outline{background:transparent;color:#fff;padding:0.85rem 2rem;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:3px;border:2px solid rgba(255,255,255,0.4);transition:all 0.2s;}
-.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
-.hero-visual{display:flex;justify-content:center;align-items:center;}
+.hero-grid-lines{position:absolute;inset:0;opacity:0.03;background-image:linear-gradient(var(--gold) 1px,transparent 1px),linear-gradient(90deg,var(--gold) 1px,transparent 1px);background-size:80px 80px;}
 
-/* Logo SVG hero */
-.logo-hero{width:100%;max-width:380px;}
+.hero-left{position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:1.8rem;}
+.hero-eyebrow-line{width:32px;height:1px;background:var(--gold);}
+.hero-eyebrow-text{font-size:0.72rem;color:var(--gold);letter-spacing:0.28em;text-transform:uppercase;font-weight:600;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5.5vw,4.2rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:1.5rem;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-desc{font-size:1rem;color:var(--muted);max-width:44ch;line-height:1.8;margin-bottom:2.5rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-gold{background:var(--gold);color:var(--black);padding:0.9rem 2.2rem;font-size:0.8rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.2s;display:inline-block;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.25);}
+.btn-ghost{background:transparent;color:var(--white);padding:0.9rem 2.2rem;font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;border:1px solid rgba(255,255,255,0.2);transition:all 0.2s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-stats{display:flex;gap:2.5rem;}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:var(--gold);line-height:1;}
+.hero-stat-label{font-size:0.72rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.1em;}
 
-/* ── STATS BAR ── */
-.stats-bar{background:var(--gold);padding:1.5rem 5%;}
-.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);max-width:1200px;margin:0 auto;gap:1rem;}
-.stat-item{text-align:center;}
-.stat-num{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:800;color:var(--navy-dark);line-height:1;}
-.stat-label{font-size:0.75rem;color:var(--navy);font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;}
+/* Hero derecha — imagen con overlay */
+.hero-right{position:relative;z-index:1;}
+.hero-img-wrap{position:relative;border-radius:4px;overflow:hidden;}
+.hero-img-wrap img{width:100%;height:520px;object-fit:cover;display:block;filter:brightness(0.7);}
+.hero-img-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.15) 0%,transparent 60%);z-index:1;}
+.hero-img-wrap::after{content:'';position:absolute;top:16px;left:16px;right:-16px;bottom:-16px;border:1px solid var(--border);border-radius:4px;z-index:-1;}
+.hero-img-badge{position:absolute;bottom:24px;left:24px;z-index:2;background:rgba(13,15,20,0.9);backdrop-filter:blur(10px);border:1px solid var(--border);padding:1rem 1.4rem;border-radius:4px;}
+.hero-img-badge-title{font-size:0.7rem;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;font-weight:600;margin-bottom:4px;}
+.hero-img-badge-text{font-size:0.88rem;color:var(--white);font-weight:500;}
 
-/* ── SECTIONS GENERAL ── */
-section{padding:5rem 5%;}
-.section-inner{max-width:1200px;margin:0 auto;}
-.section-eyebrow{font-size:0.72rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.6rem;display:flex;align-items:center;gap:10px;}
-.section-eyebrow::before{content:'';width:28px;height:2px;background:var(--gold);}
-.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:var(--navy-dark);line-height:1.15;margin-bottom:1rem;}
-.section-desc{color:var(--gray-text);max-width:58ch;font-size:0.95rem;line-height:1.75;}
+/* SERVICIOS */
+#servicios{padding:6rem 6%;background:var(--black2);}
+.section-inner{max-width:1280px;margin:0 auto;}
+.section-header{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:4rem;}
+.section-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:0.8rem;}
+.section-eyebrow-line{width:28px;height:1px;background:var(--gold);}
+.section-eyebrow-text{font-size:0.7rem;color:var(--gold);letter-spacing:0.28em;text-transform:uppercase;font-weight:600;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:var(--white);line-height:1.1;}
+.section-desc{color:var(--muted);font-size:0.92rem;line-height:1.8;max-width:48ch;}
 
-/* ── SERVICIOS ── */
-#servicios{background:var(--gray-light);}
-.servicios-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1.5rem;}
-.servicios-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;}
-.service-card{background:#fff;border-radius:6px;overflow:hidden;border:1px solid var(--gray-mid);transition:all 0.25s;position:relative;}
-.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(27,45,91,0.1);border-color:var(--gold);}
-.service-card-top{background:var(--navy-dark);padding:2rem 2rem 1.5rem;position:relative;}
-.service-card-top::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);}
-.service-icon-wrap{width:52px;height:52px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
-.service-icon-wrap svg{width:26px;height:26px;stroke:var(--gold);}
-.service-card-top h3{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;}
-.service-card-body{padding:1.5rem 2rem;}
-.service-card-body p{color:var(--gray-text);font-size:0.88rem;line-height:1.7;}
-.service-tag{display:inline-block;background:rgba(27,45,91,0.06);color:var(--navy);padding:3px 10px;border-radius:12px;font-size:0.72rem;font-weight:600;letter-spacing:0.06em;margin-top:1rem;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.svc{background:var(--card);overflow:hidden;position:relative;cursor:default;transition:background 0.3s;}
+.svc:hover{background:var(--card2);}
+.svc-img{width:100%;height:220px;object-fit:cover;display:block;transition:transform 0.5s,filter 0.3s;filter:brightness(0.65) saturate(0.8);}
+.svc:hover .svc-img{transform:scale(1.04);filter:brightness(0.5) saturate(0.6);}
+.svc-body{padding:1.6rem 1.8rem;}
+.svc-num{font-family:'Playfair Display',serif;font-size:0.75rem;color:var(--gold);font-weight:700;letter-spacing:0.18em;margin-bottom:0.5rem;}
+.svc-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:0.5rem;}
+.svc-desc{font-size:0.82rem;color:var(--muted);line-height:1.7;}
+.svc-tag{display:inline-block;margin-top:0.8rem;font-size:0.68rem;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:1px;}
+.svc-list{list-style:none;margin-top:0.8rem;display:flex;flex-direction:column;gap:0.4rem;}
+.svc-list li{font-size:0.8rem;color:var(--muted);padding-left:1rem;position:relative;line-height:1.5;}
+.svc-list li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:0.7rem;}
+.svc-line{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.35s;}
+.svc:hover .svc-line{transform:scaleX(1);}
 
-/* ── POR QUÉ ELEGIRNOS ── */
-#nosotros{background:#fff;}
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem;}
-.why-list{display:flex;flex-direction:column;gap:1.5rem;}
-.why-item{display:flex;gap:1.2rem;align-items:flex-start;}
-.why-icon{width:44px;height:44px;background:var(--navy-dark);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.why-icon svg{width:20px;height:20px;stroke:var(--gold);}
-.why-text h4{font-family:'Montserrat',sans-serif;font-size:0.95rem;font-weight:700;color:var(--navy-dark);margin-bottom:4px;}
-.why-text p{font-size:0.85rem;color:var(--gray-text);line-height:1.6;}
-.why-visual{background:var(--navy-dark);border-radius:8px;padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
-.why-stat{text-align:center;padding:1.5rem 1rem;background:rgba(255,255,255,0.05);border-radius:6px;border:1px solid rgba(201,168,76,0.2);}
-.why-stat-num{font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:800;color:var(--gold);line-height:1;}
-.why-stat-label{font-size:0.72rem;color:rgba(255,255,255,0.6);margin-top:6px;text-transform:uppercase;letter-spacing:0.1em;}
+/* VALORES */
+.valores{background:var(--gold);padding:2.5rem 6%;}
+.valores-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);}
+.valor{display:flex;align-items:center;gap:1rem;padding:0.5rem 2rem;position:relative;}
+.valor:not(:last-child)::after{content:'';position:absolute;right:0;top:15%;height:70%;width:1px;background:rgba(13,15,20,0.2);}
+.valor-icon{width:38px;height:38px;border:1.5px solid rgba(13,15,20,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.valor-icon svg{width:16px;height:16px;stroke:var(--black);}
+.valor-label{font-family:'Inter',sans-serif;font-size:0.82rem;font-weight:700;color:var(--black);letter-spacing:0.12em;text-transform:uppercase;}
 
-/* ── VALORES ── */
-.valores-bar{background:var(--navy-dark);padding:3rem 5%;}
-.valores-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
-.valor-item{display:flex;align-items:center;gap:1rem;padding:1rem 2rem;position:relative;}
-.valor-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:rgba(201,168,76,0.25);}
-.valor-icon{width:40px;height:40px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.valor-icon svg{width:18px;height:18px;stroke:var(--gold);}
-.valor-text{font-family:'Montserrat',sans-serif;font-size:0.85rem;font-weight:700;color:#fff;letter-spacing:0.1em;text-transform:uppercase;}
+/* NOSOTROS */
+#nosotros{padding:6rem 6%;background:var(--black);}
+.nosotros-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.nosotros-img-wrap{position:relative;}
+.nosotros-img-wrap img{width:100%;height:560px;object-fit:cover;display:block;border-radius:4px;filter:brightness(0.75);}
+.nosotros-img-deco{position:absolute;top:-20px;left:-20px;right:20px;bottom:20px;border:1px solid var(--border);border-radius:4px;z-index:-1;}
+.nosotros-badge{position:absolute;bottom:-24px;right:-24px;background:var(--gold);padding:1.5rem 2rem;border-radius:4px;text-align:center;}
+.nosotros-badge-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--black);line-height:1;}
+.nosotros-badge-text{font-size:0.7rem;color:rgba(13,15,20,0.7);text-transform:uppercase;letter-spacing:0.12em;font-weight:600;margin-top:4px;}
+.nosotros-text{padding-left:2rem;}
+.why-list{display:flex;flex-direction:column;gap:1.5rem;margin-top:2.5rem;}
+.why-item{display:flex;gap:1rem;align-items:flex-start;padding:1.2rem 1.4rem;background:var(--card);border:1px solid var(--border);border-radius:4px;transition:border-color 0.2s;}
+.why-item:hover{border-color:var(--gold);}
+.why-icon{width:36px;height:36px;background:var(--gold3);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.why-icon svg{width:16px;height:16px;stroke:var(--gold);}
+.why-item h4{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:3px;}
+.why-item p{font-size:0.8rem;color:var(--muted);line-height:1.6;}
 
-/* ── PROCESO ── */
-#proceso{background:var(--gray-light);}
-.proceso-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:3rem;position:relative;}
-.proceso-steps::before{content:'';position:absolute;top:32px;left:12.5%;right:12.5%;height:2px;background:var(--gold);z-index:0;}
-.paso{text-align:center;padding:0 1rem;position:relative;z-index:1;}
-.paso-num{width:64px;height:64px;background:var(--navy-dark);border:3px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:var(--gold);}
-.paso h4{font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--navy-dark);margin-bottom:0.4rem;}
-.paso p{font-size:0.82rem;color:var(--gray-text);line-height:1.6;}
+/* PROCESO */
+#proceso{padding:6rem 6%;background:var(--black2);}
+.proceso-header{text-align:center;margin-bottom:4rem;}
+.proceso-header .section-eyebrow{justify-content:center;}
+.proceso-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;margin-top:2rem;}
+.proceso-steps::before{content:'';position:absolute;top:28px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.paso{text-align:center;padding:0 1rem;}
+.paso-num{width:56px;height:56px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:var(--gold);background:var(--black);position:relative;z-index:1;}
+.paso h4{font-size:0.9rem;font-weight:600;color:var(--white);margin-bottom:0.5rem;}
+.paso p{font-size:0.8rem;color:var(--muted);line-height:1.7;}
 
-/* ── GALERÍA ── */
-#galeria{background:#fff;}
-.galeria-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;margin-top:3rem;}
-.galeria-item{position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;cursor:pointer;background:var(--navy-dark);border:1px solid var(--gray-mid);}
-.galeria-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.35s;}
-.galeria-item:hover img{transform:scale(1.06);}
-.galeria-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;background:linear-gradient(135deg,var(--navy-dark),var(--navy));}
-.galeria-placeholder svg{width:34px;height:34px;stroke:var(--gold);opacity:0.7;}
-.galeria-placeholder span{font-size:0.72rem;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;text-align:center;padding:0 1rem;}
-.galeria-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,29,60,0.88) 0%,rgba(17,29,60,0) 55%);display:flex;align-items:flex-end;padding:1rem;opacity:0;transition:opacity 0.25s;}
-.galeria-item:hover .galeria-overlay{opacity:1;}
-.galeria-overlay span{color:#fff;font-size:0.82rem;font-weight:600;}
-.galeria-tag{display:inline-block;background:var(--gold);color:var(--navy-dark);font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-bottom:6px;}
-.lightbox{position:fixed;inset:0;background:rgba(10,13,23,0.94);z-index:300;display:none;align-items:center;justify-content:center;padding:4%;}
-.lightbox.active{display:flex;}
-.lightbox img{max-width:100%;max-height:90vh;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
-.lightbox-close{position:absolute;top:24px;right:32px;color:#fff;font-size:2.2rem;cursor:pointer;line-height:1;opacity:0.7;transition:opacity 0.2s;}
-.lightbox-close:hover{opacity:1;}
+/* STATS */
+.stats-section{padding:5rem 6%;background:var(--card);}
+.stats-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+.stat{text-align:center;padding:2rem;border:1px solid var(--border);border-radius:4px;transition:border-color 0.2s;}
+.stat:hover{border-color:var(--gold);}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--gold);line-height:1;margin-bottom:0.5rem;}
+.stat-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.14em;}
 
-/* ── CONTACTO ── */
-#contacto{background:var(--navy-dark);}
-.contacto-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.contacto-info .section-eyebrow::before{background:var(--gold);}
-.contacto-info .section-title{color:#fff;}
-.contacto-info .section-desc{color:rgba(255,255,255,0.6);}
-.contact-items{margin-top:2rem;display:flex;flex-direction:column;gap:1.2rem;}
-.contact-row{display:flex;align-items:center;gap:1rem;}
-.contact-row-icon{width:40px;height:40px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.contact-row-icon svg{width:18px;height:18px;stroke:var(--gold);}
-.contact-row-text{font-size:0.9rem;color:rgba(255,255,255,0.8);}
-.contact-row-label{font-size:0.7rem;color:var(--gold);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:2px;}
-.contacto-form{display:flex;flex-direction:column;gap:1rem;}
-.form-group{display:flex;flex-direction:column;gap:6px;}
-.form-group label{font-size:0.75rem;color:var(--gold);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;}
-.form-group input,.form-group textarea,.form-group select{
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.15);
-  color:#fff;padding:0.75rem 1rem;
-  font-family:'Lato',sans-serif;font-size:0.9rem;
-  border-radius:3px;outline:none;
-  transition:border-color 0.2s;
-}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold);}
-.form-group textarea{resize:vertical;min-height:110px;}
-.form-group select option{background:var(--navy-dark);}
-.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3);}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.btn-send{background:var(--gold);color:var(--navy-dark);padding:0.9rem 2rem;font-size:0.85rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer;transition:background 0.2s;width:100%;margin-top:0.5rem;}
-.btn-send:hover{background:var(--gold-light);}
+/* CONTACTO */
+#contacto{padding:6rem 6%;background:var(--black);}
+.contacto-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:6rem;align-items:start;}
+.contacto-info .section-title{margin-bottom:1rem;}
+.contacto-info .section-desc{margin-bottom:2.5rem;}
+.contact-items{display:flex;flex-direction:column;gap:1.2rem;}
+.contact-row{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--card);border:1px solid var(--border);border-radius:4px;}
+.contact-icon{width:36px;height:36px;background:var(--gold3);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-icon svg{width:16px;height:16px;stroke:var(--gold);}
+.contact-label{font-size:0.68rem;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;font-weight:600;margin-bottom:2px;}
+.contact-val{font-size:0.88rem;color:var(--white);}
 
-/* ── FOOTER ── */
-footer{background:#0A1224;padding:2rem 5%;border-top:1px solid rgba(201,168,76,0.2);}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-logo{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:0.1em;}
-.footer-logo span{color:var(--gold);}
-.footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.4);}
+.contacto-form-wrap{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:2.5rem;}
+.form-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:0.4rem;}
+.form-subtitle{font-size:0.82rem;color:var(--muted);margin-bottom:2rem;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-size:0.68rem;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:600;}
+.fg input,.fg textarea,.fg select{background:var(--black);border:1px solid rgba(255,255,255,0.08);color:var(--white);padding:0.75rem 1rem;font-family:'Inter',sans-serif;font-size:0.88rem;border-radius:3px;outline:none;transition:border-color 0.2s;width:100%;}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold);}
+.fg textarea{resize:vertical;min-height:100px;}
+.fg select option{background:var(--black2);}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,0.2);}
+.fg-full{grid-column:1/-1;}
+.btn-submit{width:100%;background:var(--gold);color:var(--black);padding:1rem;font-size:0.82rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border:none;border-radius:3px;cursor:pointer;transition:all 0.2s;margin-top:0.5rem;}
+.btn-submit:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 8px 20px rgba(201,168,76,0.2);}
+
+/* FOOTER */
+footer{background:var(--black2);border-top:1px solid var(--border);padding:2.5rem 6%;}
+.footer-inner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:800;color:var(--white);}
+.footer-brand span{color:var(--gold);}
+.footer-copy{font-size:0.75rem;color:var(--muted);}
 .footer-links{display:flex;gap:1.5rem;}
-.footer-links a{font-size:0.78rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.footer-links a{font-size:0.75rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:var(--gold);}
 
-/* ── WHATSAPP BTN ── */
-.wa-float{position:fixed;bottom:24px;right:24px;z-index:200;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.4);}
-.wa-float svg{width:28px;height:28px;fill:#fff;}
+/* WA */
+.wa{position:fixed;bottom:28px;right:28px;z-index:300;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.35);transition:transform 0.2s;}
+.wa:hover{transform:scale(1.1);}
+.wa svg{width:28px;height:28px;fill:#fff;}
 
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;text-align:center;}
-  .hero p{margin:0 auto 2rem;}
-  .hero-btns{justify-content:center;}
-  .hero-visual{display:none;}
+/* ANIMACIONES */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade-up.visible{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;gap:3rem;}
+  .hero-right{display:none;}
+  .section-header{grid-template-columns:1fr;}
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .nosotros-grid{grid-template-columns:1fr;gap:4rem;}
+  .nosotros-img-wrap{display:none;}
+  .nosotros-text{padding-left:0;}
+  .contacto-grid{grid-template-columns:1fr;}
   .stats-inner{grid-template-columns:repeat(2,1fr);}
-  .why-grid{grid-template-columns:1fr;}
-  .proceso-steps{grid-template-columns:repeat(2,1fr);gap:2rem;}
+  .proceso-steps{grid-template-columns:repeat(2,1fr);}
   .proceso-steps::before{display:none;}
-  .contacto-inner{grid-template-columns:1fr;}
-  .valores-inner{grid-template-columns:1fr;gap:0;}
-  .valor-item:not(:last-child)::after{display:none;}
-  .form-row{grid-template-columns:1fr;}
 }
-@media(max-width:600px){
-  .nav-links{display:none;}
+@media(max-width:680px){
+  .nav-links,.nav-cta{display:none;}
   .hamburger{display:flex;}
-  section{padding:3.5rem 5%;}
+  .hero{padding:6rem 5% 4rem;}
+  #servicios,#nosotros,#proceso,#contacto{padding:4rem 5%;}
+  .services-grid{grid-template-columns:1fr;}
+  .valores-inner{grid-template-columns:1fr;}
+  .valor:not(:last-child)::after{display:none;}
   .stats-inner{grid-template-columns:repeat(2,1fr);}
-  .proceso-steps{grid-template-columns:1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .footer-inner{flex-direction:column;text-align:center;}
 }
 </style>
 </head>
@@ -232,26 +249,23 @@ footer{background:#0A1224;padding:2rem 5%;border-top:1px solid rgba(201,168,76,0
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg viewBox="0 0 44 44" fill="none">
-      <rect width="44" height="44" rx="9" fill="#C9A84C" opacity="0.12"/>
-      <rect x="1.2" y="1.2" width="41.6" height="41.6" rx="8" fill="none" stroke="#C9A84C" stroke-width="1.3"/>
-      <!-- Monograma F+Q entrelazado -->
-      <path d="M14 11 L14 33" stroke="#C9A84C" stroke-width="3.1" stroke-linecap="round"/>
-      <path d="M14 11 L27 11" stroke="#C9A84C" stroke-width="3.1" stroke-linecap="round"/>
-      <path d="M14 20.5 L24 20.5" stroke="#C9A84C" stroke-width="3.1" stroke-linecap="round"/>
-      <circle cx="27.5" cy="24.5" r="8.3" fill="none" stroke="#C9A84C" stroke-width="3.1"/>
-      <path d="M32.5 29.5 L37.5 34.5" stroke="#C9A84C" stroke-width="3.1" stroke-linecap="round"/>
-    </svg>
-    <div class="nav-logo-text">
-      <span class="brand">FIQUEZA</span>
-      <span class="sub">Multiservicios</span>
+    <div class="logo-icon">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M20 4 L34 13 L34 30 L6 30 L6 13 Z" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/>
+        <rect x="15" y="17" width="10" height="10" rx="1" fill="none" stroke="rgba(201,168,76,0.5)" stroke-width="1.2"/>
+        <line x1="20" y1="17" x2="20" y2="27" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <line x1="15" y1="22" x2="25" y2="22" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+      </svg>
+    </div>
+    <div>
+      <div class="nav-brand">FIQUE<span>ZA</span></div>
+      <div class="nav-sub">Multiservicios</div>
     </div>
   </a>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#proceso">Cómo trabajamos</a></li>
-    <li><a href="#galeria">Trabajos</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="https://wa.me/593993328351" class="nav-cta">Cotizar ahora</a>
@@ -260,80 +274,50 @@ footer{background:#0A1224;padding:2rem 5%;border-top:1px solid rgba(201,168,76,0
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-badge"><span>Guayaquil, Ecuador · Desde 2010</span></div>
-      <h1>Soluciones completas para tu <em>hogar</em> y tu <em>empresa</em></h1>
-      <p>Albañilería, soldadura, ebanistería, limpieza y soporte técnico. Un solo equipo de confianza para todo lo que necesitas.</p>
-      <div class="hero-btns">
-        <a href="#contacto" class="btn-gold">Solicitar cotización</a>
-        <a href="#servicios" class="btn-outline">Ver servicios</a>
-      </div>
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">Durán, Ecuador · Desde 2010</span>
     </div>
-    <div class="hero-visual">
-      <!-- Logo grande en hero -->
-      <svg class="logo-hero" viewBox="0 0 360 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Insignia con monograma F+Q -->
-        <rect x="105" y="10" width="150" height="150" rx="26" fill="rgba(255,255,255,0.04)" stroke="#C9A84C" stroke-width="2"/>
-        <path d="M148 45 L148 125" stroke="#C9A84C" stroke-width="10" stroke-linecap="round"/>
-        <path d="M148 45 L198 45" stroke="#C9A84C" stroke-width="10" stroke-linecap="round"/>
-        <path d="M148 80 L188 80" stroke="#C9A84C" stroke-width="10" stroke-linecap="round"/>
-        <circle cx="198" cy="95" r="30" fill="none" stroke="#C9A84C" stroke-width="10"/>
-        <path d="M216 113 L232 129" stroke="#C9A84C" stroke-width="10" stroke-linecap="round"/>
-        <!-- F grande -->
-        <text x="30" y="260" font-family="Montserrat, sans-serif" font-size="60" font-weight="800" fill="#C9A84C" letter-spacing="-1">F</text>
-        <text x="70" y="260" font-family="Montserrat, sans-serif" font-size="60" font-weight="800" fill="white" letter-spacing="-1">IQUEZA</text>
-        <!-- línea dorada + MULTISERVICIOS -->
-        <line x1="30" y1="273" x2="98" y2="273" stroke="#C9A84C" stroke-width="1.5"/>
-        <text x="180" y="279" font-family="Montserrat, sans-serif" font-size="11" font-weight="700" fill="#C9A84C" text-anchor="middle" letter-spacing="5">MULTISERVICIOS</text>
-        <line x1="262" y1="273" x2="330" y2="273" stroke="#C9A84C" stroke-width="1.5"/>
-      </svg>
+    <h1>Soluciones que<br><em>transforman</em><br>tu espacio</h1>
+    <p class="hero-desc">Albañilería, soldadura, ebanistería, limpieza y soporte técnico. Un solo equipo de confianza para todo lo que tu hogar o empresa necesita.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-gold">Solicitar cotización</a>
+      <a href="#servicios" class="btn-ghost">Ver servicios</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">+10</div><div class="hero-stat-label">Años de exp.</div></div>
+      <div><div class="hero-stat-num">6</div><div class="hero-stat-label">Especialidades</div></div>
+      <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Garantizado</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <img src="albanileria.jpg" alt="Trabajo de albañilería profesional"/>
+      <div class="hero-img-badge">
+        <div class="hero-img-badge-title">Calidad garantizada</div>
+        <div class="hero-img-badge-text">Cada trabajo firmado por nuestro equipo</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-num">+10</div>
-      <div class="stat-label">Años de experiencia</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">6</div>
-      <div class="stat-label">Especialidades</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Trabajo garantizado</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">1</div>
-      <div class="stat-label">Solo contacto</div>
-    </div>
-  </div>
-</div>
-
-<!-- VALORES BAR -->
-<div class="valores-bar">
+<!-- VALORES -->
+<div class="valores">
   <div class="valores-inner">
-    <div class="valor-item">
-      <div class="valor-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-      </div>
-      <div class="valor-text">Confianza</div>
+    <div class="valor">
+      <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+      <div class="valor-label">Confianza</div>
     </div>
-    <div class="valor-item">
-      <div class="valor-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-      </div>
-      <div class="valor-text">Calidad</div>
+    <div class="valor">
+      <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+      <div class="valor-label">Calidad</div>
     </div>
-    <div class="valor-item">
-      <div class="valor-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div class="valor-text">Puntualidad</div>
+    <div class="valor">
+      <div class="valor-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="valor-label">Puntualidad</div>
     </div>
   </div>
 </div>
@@ -341,271 +325,233 @@ footer{background:#0A1224;padding:2rem 5%;border-top:1px solid rgba(201,168,76,0
 <!-- SERVICIOS -->
 <section id="servicios">
   <div class="section-inner">
-    <div class="servicios-header">
+    <div class="section-header fade-up">
       <div>
-        <div class="section-eyebrow">Lo que hacemos</div>
+        <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span class="section-eyebrow-text">Lo que hacemos</span></div>
         <h2 class="section-title">Nuestros servicios</h2>
-        <p class="section-desc">Profesionales especializados en cada área, con materiales de calidad y resultados garantizados en cada trabajo.</p>
       </div>
+      <p class="section-desc">Profesionales especializados en cada área, con materiales de calidad y resultados garantizados en cada trabajo que entregamos.</p>
     </div>
-    <div class="servicios-grid">
+    <div class="services-grid">
 
-      <div class="service-card">
-        <div class="service-card-top">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
-            </svg>
-          </div>
-          <h3>Albañilería</h3>
+      <!-- CATEGORÍA 1 -->
+      <div class="svc fade-up">
+        <img class="svc-img" src="albanileria.jpg" alt="Construcción y acabados"/>
+        <div class="svc-body">
+          <div class="svc-num">01</div>
+          <div class="svc-name">Construcción & Acabados</div>
+          <div class="svc-desc">Todo lo que tu estructura necesita, desde cero hasta el detalle final.</div>
+          <ul class="svc-list">
+            <li>Albañilería (obra gruesa y fina)</li>
+            <li>Pisos: porcelanato, cerámica y parquet</li>
+            <li>Enlucidos y remodelaciones</li>
+            <li>Pintura interior y exterior</li>
+          </ul>
+          <div class="svc-tag">Construcción · Pisos · Pintura</div>
         </div>
-        <div class="service-card-body">
-          <p>Construcción, remodelación, enlucidos, pisos de porcelanato, cerámica y parquet. Obra gruesa y fina con acabados de nivel profesional.</p>
-          <span class="service-tag">Construcción & Acabados</span>
-        </div>
+        <div class="svc-line"></div>
       </div>
 
-      <div class="service-card">
-        <div class="service-card-top">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
-            </svg>
-          </div>
-          <h3>Soldadura</h3>
+      <!-- CATEGORÍA 2 -->
+      <div class="svc fade-up">
+        <img class="svc-img" src="soldadura.png" alt="Carpintería metálica"/>
+        <div class="svc-body">
+          <div class="svc-num">02</div>
+          <div class="svc-name">Carpintería Metálica</div>
+          <div class="svc-desc">Fabricación y reparación de estructuras en metal con acabado profesional.</div>
+          <ul class="svc-list">
+            <li>Rejas, puertas y portones</li>
+            <li>Estructuras metálicas</li>
+            <li>Soldadura eléctrica y autógena</li>
+            <li>Cerrajería en general</li>
+          </ul>
+          <div class="svc-tag">Metal · Soldadura · Cerrajería</div>
         </div>
-        <div class="service-card-body">
-          <p>Estructuras metálicas, rejas, puertas, portones y reparaciones en general. Soldadura eléctrica y autógena con acabado profesional.</p>
-          <span class="service-tag">Estructuras Metálicas</span>
-        </div>
+        <div class="svc-line"></div>
       </div>
 
-      <div class="service-card">
-        <div class="service-card-top">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-            </svg>
-          </div>
-          <h3>Ebanistería & Tapizado</h3>
+      <!-- CATEGORÍA 3 -->
+      <div class="svc fade-up">
+        <img class="svc-img" src="carpinteria.jpg" alt="Carpintería en madera"/>
+        <div class="svc-body">
+          <div class="svc-num">03</div>
+          <div class="svc-name">Carpintería en Madera</div>
+          <div class="svc-desc">Muebles y tapizados a medida con materiales de alta durabilidad.</div>
+          <ul class="svc-list">
+            <li>Fabricación de muebles a medida</li>
+            <li>Restauración de muebles</li>
+            <li>Tapizado de sofás, sillas y cabeceras</li>
+            <li>Ebanistería fina</li>
+          </ul>
+          <div class="svc-tag">Madera · Muebles · Tapizado</div>
         </div>
-        <div class="service-card-body">
-          <p>Fabricación y restauración de muebles en madera. Tapizado de sofás, sillas y cabeceras con telas y cueros de alta durabilidad.</p>
-          <span class="service-tag">Madera & Tapicería</span>
-        </div>
+        <div class="svc-line"></div>
       </div>
 
-      <div class="service-card">
-        <div class="service-card-top">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/>
-            </svg>
-          </div>
-          <h3>Limpieza General</h3>
+      <!-- CATEGORÍA 4 -->
+      <div class="svc fade-up">
+        <img class="svc-img" src="limpieza2.webp" alt="Gasfitería y limpieza"/>
+        <div class="svc-body">
+          <div class="svc-num">04</div>
+          <div class="svc-name">Gasfitería & Limpieza</div>
+          <div class="svc-desc">Instalaciones sanitarias y limpieza profunda para tu hogar o empresa.</div>
+          <ul class="svc-list">
+            <li>Gasfitería: tuberías, llaves y desagües</li>
+            <li>Instalaciones sanitarias</li>
+            <li>Limpieza profunda de hogares y oficinas</li>
+            <li>Limpieza post-construcción</li>
+          </ul>
+          <div class="svc-tag">Gasfitería · Limpieza · Desinfección</div>
         </div>
-        <div class="service-card-body">
-          <p>Limpieza profunda de oficinas, hogares e instituciones. Incluye desinfección, lavado de alfombras y limpieza post-construcción.</p>
-          <span class="service-tag">Hogares & Empresas</span>
-        </div>
+        <div class="svc-line"></div>
       </div>
 
-      <div class="service-card">
-        <div class="service-card-top">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><polyline points="9 11 12 14 15 11 12 8"/>
-            </svg>
-          </div>
-          <h3>Mantenimiento PC</h3>
+      <!-- CATEGORÍA 5 -->
+      <div class="svc fade-up" style="grid-column: span 2;">
+        <img class="svc-img" src="pc1.webp" alt="Tecnología y soporte PC" style="height:260px;"/>
+        <div class="svc-body">
+          <div class="svc-num">05</div>
+          <div class="svc-name">Tecnología & Soporte PC</div>
+          <div class="svc-desc">Asesoría técnica y mantenimiento de equipos para hogares y empresas.</div>
+          <ul class="svc-list" style="columns:2;gap:2rem;">
+            <li>Diagnóstico de hardware y software</li>
+            <li>Limpieza interna de equipos</li>
+            <li>Formateo e instalación de sistemas</li>
+            <li>Asesoría técnica personalizada</li>
+          </ul>
+          <div class="svc-tag">PC · Diagnóstico · Asesoría</div>
         </div>
-        <div class="service-card-body">
-          <p>Diagnóstico, limpieza, formateo e instalación de sistemas operativos. Asesoría técnica y soporte para hogares y empresas.</p>
-          <span class="service-tag">Soporte Técnico</span>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-card-top">
-          <div class="service-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 14.66V20a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h5.34"/><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"/>
-            </svg>
-          </div>
-          <h3>Pintura</h3>
-        </div>
-        <div class="service-card-body">
-          <p>Pintura residencial, comercial e industrial. Interiores y exteriores con preparación de superficie y materiales de primera calidad.</p>
-          <span class="service-tag">Residencial & Comercial</span>
-        </div>
+        <div class="svc-line"></div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- POR QUÉ ELEGIRNOS -->
+<!-- NOSOTROS -->
 <section id="nosotros">
   <div class="section-inner">
-    <div class="why-grid">
-      <div>
-        <div class="section-eyebrow">Por qué elegirnos</div>
-        <h2 class="section-title">Compromiso en cada trabajo que entregamos</h2>
-        <p class="section-desc" style="margin-bottom:2.5rem;">No tercerizamos — cada servicio lo ejecuta nuestro propio equipo. Eso nos permite garantizar calidad, puntualidad y precio justo.</p>
+    <div class="nosotros-grid">
+      <div class="nosotros-img-wrap fade-up">
+        <img src="albanileria.jpg" alt="Equipo Fiqueza trabajando"/>
+        <div class="nosotros-img-deco"></div>
+        <div class="nosotros-badge">
+          <div class="nosotros-badge-num">+10</div>
+          <div class="nosotros-badge-text">Años de<br>experiencia</div>
+        </div>
+      </div>
+      <div class="nosotros-text fade-up">
+        <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span class="section-eyebrow-text">Por qué elegirnos</span></div>
+        <h2 class="section-title" style="margin-bottom:1rem;">Compromiso en cada trabajo que entregamos</h2>
+        <p class="section-desc">No tercerizamos — cada servicio lo ejecuta nuestro propio equipo. Eso nos permite garantizar calidad, puntualidad y precio justo en cada proyecto.</p>
         <div class="why-list">
           <div class="why-item">
             <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-            <div class="why-text"><h4>Equipo propio, sin intermediarios</h4><p>Todos nuestros profesionales trabajan directamente con nosotros, lo que garantiza responsabilidad y consistencia en cada trabajo.</p></div>
+            <div><h4>Equipo propio, sin intermediarios</h4><p>Todos nuestros profesionales trabajan directamente con nosotros, garantizando responsabilidad en cada trabajo.</p></div>
           </div>
           <div class="why-item">
             <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="why-text"><h4>Resultado garantizado</h4><p>Si algo no queda como se acordó, volvemos y lo corregimos sin costo adicional. Así de simple.</p></div>
+            <div><h4>Resultado 100% garantizado</h4><p>Si algo no queda como se acordó, volvemos y lo corregimos sin costo adicional. Así de simple.</p></div>
           </div>
           <div class="why-item">
             <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-            <div class="why-text"><h4>Presupuesto en 24 horas</h4><p>Te enviamos una cotización detallada sin compromisos en menos de un día hábil después de tu solicitud.</p></div>
+            <div><h4>Presupuesto en 24 horas</h4><p>Te enviamos una cotización detallada sin compromisos en menos de un día hábil.</p></div>
           </div>
         </div>
-      </div>
-      <div class="why-visual">
-        <div class="why-stat"><div class="why-stat-num">+10</div><div class="why-stat-label">Años activos</div></div>
-        <div class="why-stat"><div class="why-stat-num">6</div><div class="why-stat-label">Especialidades</div></div>
-        <div class="why-stat"><div class="why-stat-num">100%</div><div class="why-stat-label">Garantizado</div></div>
-        <div class="why-stat"><div class="why-stat-num">24h</div><div class="why-stat-label">Respuesta</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CÓMO TRABAJAMOS -->
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <div class="stat fade-up"><div class="stat-num">+10</div><div class="stat-label">Años de experiencia</div></div>
+    <div class="stat fade-up"><div class="stat-num">6</div><div class="stat-label">Especialidades</div></div>
+    <div class="stat fade-up"><div class="stat-num">100%</div><div class="stat-label">Trabajo garantizado</div></div>
+    <div class="stat fade-up"><div class="stat-num">0$</div><div class="stat-label">Costo de la visita</div></div>
+  </div>
+</div>
+
+<!-- PROCESO -->
 <section id="proceso">
   <div class="section-inner">
-    <div style="text-align:center;margin-bottom:1rem;">
-      <div class="section-eyebrow" style="justify-content:center;">Cómo trabajamos</div>
-      <h2 class="section-title" style="text-align:center;">Simple, rápido y transparente</h2>
+    <div class="proceso-header fade-up">
+      <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span class="section-eyebrow-text">Cómo trabajamos</span></div>
+      <h2 class="section-title">Simple, rápido y transparente</h2>
     </div>
     <div class="proceso-steps">
-      <div class="paso">
+      <div class="paso fade-up">
         <div class="paso-num">1</div>
         <h4>Nos contactas</h4>
         <p>Por WhatsApp, formulario o llamada. Cuéntanos qué necesitas.</p>
       </div>
-      <div class="paso">
+      <div class="paso fade-up">
         <div class="paso-num">2</div>
         <h4>Evaluamos</h4>
-        <p>Visitamos el lugar o analizamos tu caso y preparamos la cotización.</p>
+        <p>Visitamos el lugar, evaluamos la obra en persona y te damos el presupuesto ahí mismo.</p>
       </div>
-      <div class="paso">
+      <div class="paso fade-up">
         <div class="paso-num">3</div>
         <h4>Ejecutamos</h4>
-        <p>Nuestro equipo llega puntual y realiza el trabajo con los materiales acordados.</p>
+        <p>Nuestro equipo llega puntual y trabaja con los materiales acordados.</p>
       </div>
-      <div class="paso">
+      <div class="paso fade-up">
         <div class="paso-num">4</div>
         <h4>Garantizamos</h4>
-        <p>Entregamos el trabajo terminado y garantizamos el resultado.</p>
+        <p>Entregamos el trabajo terminado y garantizamos el resultado final.</p>
       </div>
     </div>
   </div>
 </section>
-
-<!-- GALERÍA -->
-<section id="galeria">
-  <div class="section-inner">
-    <div style="text-align:center;margin-bottom:1rem;">
-      <div class="section-eyebrow" style="justify-content:center;">Nuestro trabajo</div>
-      <h2 class="section-title" style="text-align:center;">Trabajos realizados</h2>
-      <p class="section-desc" style="text-align:center;margin:0 auto;">Una muestra real de proyectos entregados. Cada foto es un trabajo terminado y garantizado por nuestro equipo.</p>
-    </div>
-    <div class="galeria-grid" id="galeriaGrid">
-
-      <!-- Ejemplo con foto real: reemplaza src por tu imagen y borra galeria-placeholder -->
-      <div class="galeria-item" onclick="abrirLightbox(this)">
-        <div class="galeria-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Albañilería<br/>Agrega tu foto aquí</span>
-        </div>
-        <div class="galeria-overlay"><span><span class="galeria-tag" style="display:block;">Albañilería</span>Remodelación de sala</span></div>
-      </div>
-
-      <div class="galeria-item" onclick="abrirLightbox(this)">
-        <div class="galeria-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Soldadura<br/>Agrega tu foto aquí</span>
-        </div>
-        <div class="galeria-overlay"><span><span class="galeria-tag" style="display:block;">Soldadura</span>Portón de acceso vehicular</span></div>
-      </div>
-
-      <div class="galeria-item" onclick="abrirLightbox(this)">
-        <div class="galeria-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Ebanistería<br/>Agrega tu foto aquí</span>
-        </div>
-        <div class="galeria-overlay"><span><span class="galeria-tag" style="display:block;">Ebanistería</span>Restauración de comedor</span></div>
-      </div>
-
-      <div class="galeria-item" onclick="abrirLightbox(this)">
-        <div class="galeria-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Pintura<br/>Agrega tu foto aquí</span>
-        </div>
-        <div class="galeria-overlay"><span><span class="galeria-tag" style="display:block;">Pintura</span>Fachada residencial</span></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Lightbox para ver la imagen en grande -->
-<div class="lightbox" id="lightbox" onclick="cerrarLightbox(event)">
-  <span class="lightbox-close" onclick="cerrarLightbox(event)">&times;</span>
-  <img id="lightboxImg" src="" alt="Trabajo realizado"/>
-</div>
 
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="section-inner">
-    <div class="contacto-inner">
-      <div class="contacto-info">
-        <div class="section-eyebrow">Hablemos</div>
+    <div class="contacto-grid">
+      <div class="contacto-info fade-up">
+        <div class="section-eyebrow"><div class="section-eyebrow-line"></div><span class="section-eyebrow-text">Hablemos</span></div>
         <h2 class="section-title">¿En qué podemos ayudarte?</h2>
-        <p class="section-desc">Cuéntanos lo que necesitas y te respondemos con presupuesto sin costo en menos de 24 horas.</p>
+        <p class="section-desc" style="margin-bottom:2.5rem;">Cuéntanos lo que necesitas, coordinamos una visita sin costo y te damos el presupuesto en persona al evaluar la obra.</p>
         <div class="contact-items">
           <div class="contact-row">
-            <div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-            <div><div class="contact-row-label">Teléfono / WhatsApp</div><div class="contact-row-text">+593 99 332 8351</div></div>
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div><div class="contact-label">Teléfono / WhatsApp</div><div class="contact-val">+593 99 332 8351</div></div>
           </div>
           <div class="contact-row">
-            <div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><div class="contact-row-label">Correo</div><div class="contact-row-text">contacto@fiqueza.com</div></div>
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><div class="contact-label">Correo electrónico</div><div class="contact-val">servicios.fiqueza@gmail.com</div></div>
           </div>
           <div class="contact-row">
-            <div class="contact-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div><div class="contact-row-label">Ubicación</div><div class="contact-row-text">Guayaquil, Ecuador</div></div>
+            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="contact-label">Ubicación</div><div class="contact-val">Durán, Ecuador</div></div>
           </div>
         </div>
       </div>
-      <form class="contacto-form" onsubmit="return false;">
-        <div class="form-row">
-          <div class="form-group"><label>Tu nombre</label><input type="text" placeholder="Ej: Juan Pérez"/></div>
-          <div class="form-group"><label>WhatsApp</label><input type="tel" placeholder="+593 99 332 8351"/></div>
-        </div>
-        <div class="form-group">
-          <label>Servicio requerido</label>
-          <select>
-            <option value="" disabled selected>Selecciona un servicio...</option>
-            <option>Albañilería</option>
-            <option>Soldadura</option>
-            <option>Ebanistería & Tapizado</option>
-            <option>Limpieza General</option>
-            <option>Mantenimiento PC</option>
-            <option>Pintura</option>
-            <option>Varios servicios</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Descripción</label><textarea placeholder="Describe brevemente lo que necesitas..."></textarea></div>
-        <button type="submit" class="btn-send">Enviar solicitud</button>
-      </form>
+      <div class="contacto-form-wrap fade-up">
+        <div class="form-title">Solicita tu cotización</div>
+        <div class="form-subtitle">Sin costo · Coordinamos una visita y evaluamos en persona</div>
+        <form onsubmit="return false;">
+          <div class="form-grid">
+            <div class="fg"><label>Tu nombre</label><input type="text" placeholder="Ej: Juan Pérez"/></div>
+            <div class="fg"><label>WhatsApp</label><input type="tel" placeholder="+593 99 000 0000"/></div>
+            <div class="fg fg-full">
+              <label>Servicio requerido</label>
+              <select>
+                <option value="" disabled selected>Selecciona una categoría...</option>
+                <option>Construcción & Acabados (Albañilería, Pisos, Pintura)</option>
+                <option>Carpintería Metálica (Rejas, Soldadura, Cerrajería)</option>
+                <option>Carpintería en Madera (Muebles, Tapizado)</option>
+                <option>Gasfitería & Limpieza</option>
+                <option>Tecnología & Soporte PC</option>
+                <option>Varios servicios</option>
+              </select>
+            </div>
+            <div class="fg fg-full"><label>Descripción</label><textarea placeholder="Describe brevemente lo que necesitas..."></textarea></div>
+          </div>
+          <button type="submit" class="btn-submit">Enviar solicitud</button>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -613,8 +559,8 @@ footer{background:#0A1224;padding:2rem 5%;border-top:1px solid rgba(201,168,76,0
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">FIQUE<span>ZA</span></div>
-    <div class="footer-copy">© 2025 Multiservicios Fiqueza · Guayaquil, Ecuador</div>
+    <div class="footer-brand">FIQUE<span>ZA</span></div>
+    <div class="footer-copy">© 2025 Multiservicios Fiqueza · Durán, Ecuador</div>
     <div class="footer-links">
       <a href="#servicios">Servicios</a>
       <a href="#nosotros">Nosotros</a>
@@ -624,22 +570,17 @@ footer{background:#0A1224;padding:2rem 5%;border-top:1px solid rgba(201,168,76,0
 </footer>
 
 <!-- WhatsApp flotante -->
-<a href="https://wa.me/593993328351" class="wa-float" target="_blank" aria-label="Contactar por WhatsApp">
+<a href="https://wa.me/593993328351" class="wa" target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-function abrirLightbox(item){
-  var img = item.querySelector('img');
-  if(!img) return; // si todavía es un placeholder sin foto real, no abre nada
-  document.getElementById('lightboxImg').src = img.src;
-  document.getElementById('lightbox').classList.add('active');
-}
-function cerrarLightbox(e){
-  if(e.target.id === 'lightbox' || e.target.classList.contains('lightbox-close')){
-    document.getElementById('lightbox').classList.remove('active');
-  }
-}
+// Scroll animation
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 </script>
+
 </body>
 </html>
